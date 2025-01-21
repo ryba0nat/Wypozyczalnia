@@ -26,5 +26,33 @@ namespace WypozyczalniaSprzetu
         {
             return ListaWypozyczen.FindAll(w => w.Sprzet == sprzet);
         }
+
+        //  Pobiera aktywne wypożyczenia (te, które nie mają ustawionej daty zwrotu)
+        public List<Wypozyczenie> GetAktywneWypozyczenia()
+        {
+            return ListaWypozyczen.FindAll(w => w.DataZwrotu == null);
+        }
+
+        public void WypozyczSprzet(int idSprzetu, Klient klient)
+        {
+            SprzetNarciarski sprzet = ListaWypozyczen.Find(w => w.Sprzet.ID == idSprzetu)?.Sprzet;
+            if (sprzet != null && !sprzet.CzyWypozyczony)
+            {
+                Wypozyczenie wypozyczenie = new Wypozyczenie(sprzet, klient, DateTime.Now);
+                ListaWypozyczen.Add(wypozyczenie);
+                klient.DodajWypozyczenie(wypozyczenie);
+            }
+        }
+
+        public void ZwrocSprzet(int idSprzetu)
+        {
+            Wypozyczenie wypozyczenie = ListaWypozyczen.Find(w => w.Sprzet.ID == idSprzetu && w.DataZwrotu == null);
+            if (wypozyczenie != null)
+            {
+                wypozyczenie.DataZwrotu = DateTime.Now;
+                wypozyczenie.Sprzet.CzyWypozyczony = false;
+            }
+        }
+
     }
 }

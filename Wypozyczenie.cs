@@ -23,5 +23,7 @@ namespace WypozyczalniaSprzetu
             var dni = (DataZwrotu.Value - DataWypozyczenia).Days;
             return dni * Sprzet.CenaZaDzien();
         }
+
+
     }
 }

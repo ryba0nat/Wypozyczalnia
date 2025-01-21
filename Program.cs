@@ -1,7 +1,7 @@
 ﻿internal class Program
 {
-    private static void Main(string[] args)
+    private static void Main()
     {
-        Console.WriteLine("Hello, World!");
+        Console.WriteLine("Hello");
     }
 }

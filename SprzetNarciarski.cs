@@ -2,6 +2,7 @@
 
 namespace WypozyczalniaSprzetu
 {
+    [Serializable]
     public abstract class SprzetNarciarski
     {
         private static int globalId = 1; // Globalny licznik ID

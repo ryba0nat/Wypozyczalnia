@@ -2,6 +2,7 @@
 
 namespace WypozyczalniaSprzetu
 {
+    [Serializable]
     public class Karnet
     {
         private static int liczbaGenerowana = 1; // Licznik numerów w danym dniu
